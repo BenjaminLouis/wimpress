@@ -1,8 +1,7 @@
----
-output: github_document
----
-
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build status](https://travis-ci.org/BenjaminLouis/wimpress.svg?branch=master)](https://travis-ci.org/BenjaminLouis/wimpress)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/BenjaminLouis/wimpress?branch=master&svg=true)](https://ci.appveyor.com/project/BenjaminLouis/wimpress)
+[![Coverage status](https://codecov.io/gh/BenjaminLouis/wimpress/branch/master/graph/badge.svg)](https://codecov.io/github/BenjaminLouis/wimpress?branch=master)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 

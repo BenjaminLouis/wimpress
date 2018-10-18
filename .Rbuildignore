@@ -8,3 +8,6 @@ devtstuff_history.R
 ^LICENSE\.md$
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
+^\.travis\.yml$
+^appveyor\.yml$
+^codecov\.yml$
