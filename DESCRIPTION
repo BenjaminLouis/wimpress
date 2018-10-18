@@ -1,0 +1,20 @@
+Package: wimpress
+Title: Shiny module to prepare PDF template with CSS for Paged Media
+Version: 0.0.0.9000
+Authors@R: person('Benjamin', 'Louis', email = 'contact@benjaminlouis-stat.fr', role = c('aut', 'cre'))
+Description: Inputs of this shiny module are variables for a Sass CSS preprocessor file used as CSS paged media to print PDF.
+License: MIT + file LICENSE
+URL: https://github.com/BenjaminLouis/wimpress
+BugReports: https://github.com/BenjaminLouis/wimpress/issues
+Depends: 
+    R (>= 3.4.3)
+Imports:
+    shiny
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
