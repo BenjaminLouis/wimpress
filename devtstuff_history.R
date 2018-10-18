@@ -64,7 +64,6 @@ usethis::use_tidy_description()
 
 # Versionning
 usethis::use_git()
-usethis::use_github()
 
 # Codecov
 usethis::use_travis()
