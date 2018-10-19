@@ -10,7 +10,6 @@ init:
 install:
   ps: |
         Bootstrap
-        Import-Module '.\scripts\appveyor-tool.ps1'
 
 cache:
   - C:\RLibrary
