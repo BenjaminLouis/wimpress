@@ -6,15 +6,18 @@ Description: Inputs of this shiny module are variables for a Sass CSS preprocess
 License: MIT + file LICENSE
 URL: https://github.com/BenjaminLouis/wimpress
 BugReports: https://github.com/BenjaminLouis/wimpress/issues
-Depends: 
-    R (>= 3.4.3)
 Imports:
-    shiny
+    DT,
+    glue,
+    graphics,
+    shiny,
+    stats,
+    utils
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
-    testthat,
-    covr
+    testthat
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
