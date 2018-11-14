@@ -45,17 +45,12 @@ usethis::use_code_of_conduct()
 usethis::use_lifecycle_badge("Experimental")
 usethis::use_news_md()
 
-# For data
-#usethis::use_data_raw()
-
 # For tests
 #usethis::use_testthat()
 #usethis::use_test("app")
 
-# Dependencies
-usethis::use_package("shiny")
-
 # Reorder your DESC
+attachment::att_to_description()
 usethis::use_tidy_description()
 
 # Vignette

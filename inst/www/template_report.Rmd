@@ -4,7 +4,6 @@ output:
   weasydoc::hpdf_document_base:
     engine: "weasyprint"
     keep_html: true
-    css: "template_style.css"
 params:
   n: 10
 ---
