@@ -1,0 +1,28 @@
+/* VARIABLES */
+/*-----------*/
+@import 'variables';
+
+/* CSS PAGE MEDIA ELEMENTS */
+/*-------------------------*/
+@page {
+  size: a4;
+  margin-top: 8mm;
+  padding-top: 8mm;
+  margin-bottom: 13mm;
+  margin-left: 10mm;
+  margin-right: 10mm;
+  font-size: 12pt;
+  @bottom-left {
+    content: "Test n°1";
+    background-color: rgb(201, 76, 76);
+    width: 100%;
+  }
+  @bottom-right {
+    content: "Page " counter(page) "/" counter(pages);
+  }
+  @top-right {
+    content: "";
+    width: 100%;
+    background-color: rgb(201, 76, 76);
+  }
+}
