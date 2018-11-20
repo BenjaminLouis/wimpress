@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(shiny)
 #' if (interactive()) {
 #' ui <- fluidPage(
@@ -21,7 +22,7 @@
 #'
 #' shinyApp(ui, server)
 #' }
-#'
+#'}
 mod_view_renderedpdfUI <- function(id) {
 
   ns <- NS(id)
