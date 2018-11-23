@@ -31,11 +31,11 @@ mod_cssproperty_pageInput <- function(id) {
   tagList(
     gradientBox(
       title = "Page properties",
-      icon = "fa fa-th",
-      gradientColor = "teal",
+      icon = "fa fa-file",
+      gradientColor = "black",
       width = 12,
       boxToolSize = "sm",
-      tags$div(id = "titleui",
+      tags$div(id = ns("titleui"),
                fluidRow(
                  column(width = 3, h4("Page")),
                  column(width = 4, h4("Property")),
@@ -56,7 +56,7 @@ mod_cssproperty_pageInput <- function(id) {
 #' @param output internal
 #' @param session internal
 #'
-#' @importFrom shiny observeEvent insertUI fluidRow column selectInput textInput
+#' @importFrom shiny reactiveValues observeEvent insertUI fluidRow column selectInput textInput reactive
 #'
 #' @export
 #' @rdname mod_cssproperty_pageInput
@@ -68,22 +68,23 @@ mod_cssproperty_page <- function(input, output, session) {
              "margin", "margin-top", "margin-right", "margin-bottom", "margin-left",
              "border", "border-top", "border-right", "border-bottom", "border-left",
              "padding", "padding-top", "padding-right", "padding-bottom", "padding-left")
+  rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
+
   observeEvent(input$add_property, {
     insertUI(
-      selector = "#titleui",
+      selector = paste0("#", ns("titleui")),
       where = "beforeEnd",
       immediate = TRUE,
       ui = fluidRow(
         column(width = 3, selectInput(ns(paste0("prop_where_",input$add_property)),
                                       label = NULL, choices = c("All", "First", "Last", "Left", "Right"))),
         column(width = 4, selectInput(ns(paste0("prop_selected_",input$add_property)),
-                                      label = NULL, choices = c("", props))),
+                                      label = NULL, choices = c("", sort(props)))),
         column(width = 5, textInput(ns(paste0("prop_value_",input$add_property)), label = NULL))
       )
     )
   })
 
-  rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
   rv$where = reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
   rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
   rv$value = reactive(sapply(grep(pattern = "^prop_value_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))

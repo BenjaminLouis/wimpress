@@ -2,12 +2,21 @@
 % Please edit documentation in R/mod_cssproperty_pageInput.R
 \name{mod_cssproperty_pageInput}
 \alias{mod_cssproperty_pageInput}
+\alias{mod_cssproperty_page}
 \title{mod_cssproperty_pageInput and mod_cssproperty_page}
 \usage{
 mod_cssproperty_pageInput(id)
+
+mod_cssproperty_page(input, output, session)
 }
 \arguments{
 \item{id}{shiny id}
+
+\item{input}{internal}
+
+\item{output}{internal}
+
+\item{session}{internal}
 }
 \description{
 A shiny module that allows to give css property for \code{@Page} rule in CSS for pages media

@@ -3,7 +3,7 @@
 #'
 #' @param id shiny id
 #'
-#' @importFrom shiny NS uiOutput tagList
+#' @importFrom shiny NS tagList uiOutput
 #'
 #' @export
 #'
@@ -44,8 +44,8 @@ mod_view_renderedpdfUI <- function(id) {
 #' specified within the YAML front-matter (see argument \code{params} in \code{render})
 #' @param style_css css file
 #'
-#' @importFrom shiny reactive renderUI tags
 #' @importFrom rmarkdown render
+#' @importFrom shiny renderUI tags
 #'
 #' @export
 #' @rdname mod_view_renderedpdfUI
