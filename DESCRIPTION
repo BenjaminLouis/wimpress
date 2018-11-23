@@ -13,8 +13,11 @@ License: MIT + file LICENSE
 URL: https://github.com/BenjaminLouis/wimpress
 BugReports: https://github.com/BenjaminLouis/wimpress/issues
 Imports: 
+    dplyr,
     rmarkdown,
-    shiny
+    shiny,
+    shinydashboard,
+    shinydashboardPlus
 Suggests: 
     covr,
     knitr,
