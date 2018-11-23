@@ -1,8 +1,9 @@
 #' @importFrom shiny observeEvent callModule
 #'
 app_server <- function(input, output, session) {
+
   observeEvent(input$refresh, {
-    callModule(mod_cssproperty_page, "page")
+    callModule(mod_view_renderedpdf, "my_pdf", path = system.file("www", package = "wimpress"))
   }, ignoreNULL = FALSE)
-  callModule(mod_view_renderedpdf, "my_pdf", path = system.file("www", package = "wimpress"))
+  pageprop <- callModule(mod_cssproperty_page, "page")
 }

@@ -1,6 +1,6 @@
 
-#' @importFrom shiny actionButton icon fluidRow column
-#' @importFrom shinydashboard dashboardPage dashboardSidebar dashboardBody
+#' @importFrom shiny actionButton icon fluidRow column h3
+#' @importFrom shinydashboard dashboardPage dashboardHeader dashboardSidebar dashboardBody
 app_ui <- function() {
 
   dashboardPage(
@@ -12,10 +12,11 @@ app_ui <- function() {
     dashboardBody(
 
       fluidRow(
-        column(width = 4,
+        column(width = 5,
+               h3("Pages properties"),
                mod_cssproperty_pageInput("page")
                ),
-        column(width = 8,
+        column(width = 7,
                actionButton("refresh", label = "Refresh", icon = icon("redo")),
                mod_view_renderedpdfUI("my_pdf")
         )

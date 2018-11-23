@@ -29,20 +29,22 @@ mod_cssproperty_pageInput <- function(id) {
   ns <- NS(id)
 
   tagList(
-  gradientBox(
-    title = "Page properties",
-    icon = "fa fa-th",
-    gradientColor = "teal",
-    width = 12,
-    boxToolSize = "sm",
-    tags$div(id = "titleui",
-    fluidRow(
-      column(width = 6, h4("Property")),
-      column(width = 6, h4("Value"))
+    gradientBox(
+      title = "Page properties",
+      icon = "fa fa-th",
+      gradientColor = "teal",
+      width = 12,
+      boxToolSize = "sm",
+      tags$div(id = "titleui",
+               fluidRow(
+                 column(width = 3, h4("Page")),
+                 column(width = 4, h4("Property")),
+                 column(width = 5, h4("Value"))
+               )
+      ),
+      actionButton(ns("add_property"), "Add property", icon = icon("plus", lib = "glyphicon")),
+      footer_padding = FALSE
     )
-    ),
-    footer = actionButton(ns("add_property"), "Add property", icon = icon("plus", lib = "glyphicon"))
-  )
   )
 
 }
@@ -61,17 +63,29 @@ mod_cssproperty_pageInput <- function(id) {
 mod_cssproperty_page <- function(input, output, session) {
 
   ns <- session$ns
-
+  props <- c("size", "color", "background-color",
+             "font-size", "font-style", "text-align", "vertical-align", "line-height",
+             "margin", "margin-top", "margin-right", "margin-bottom", "margin-left",
+             "border", "border-top", "border-right", "border-bottom", "border-left",
+             "padding", "padding-top", "padding-right", "padding-bottom", "padding-left")
   observeEvent(input$add_property, {
     insertUI(
       selector = "#titleui",
       where = "beforeEnd",
       immediate = TRUE,
-      ui =fluidRow(
-        column(width = 6, selectInput(ns("prop_selected"), label = NULL, choices = c("prop1", "prop2"))),
-        column(width = 6, textInput(ns("prop_value"), label = NULL))
+      ui = fluidRow(
+        column(width = 3, selectInput(ns(paste0("prop_where_",input$add_property)),
+                                      label = NULL, choices = c("All", "First", "Last", "Left", "Right"))),
+        column(width = 4, selectInput(ns(paste0("prop_selected_",input$add_property)),
+                                      label = NULL, choices = c("", props))),
+        column(width = 5, textInput(ns(paste0("prop_value_",input$add_property)), label = NULL))
       )
     )
   })
 
+  rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
+  rv$where= reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
+  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
+  rv$value = reactive(sapply(grep(pattern = "^prop_value_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
+  return(rv)
 }
