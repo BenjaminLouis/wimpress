@@ -59,7 +59,7 @@ mod_cssproperty_pageInput <- function(id) {
 #' @importFrom shiny observeEvent insertUI fluidRow column selectInput textInput
 #'
 #' @export
-#' @rdname mod_view_renderedpdfUI
+#' @rdname mod_cssproperty_pageInput
 mod_cssproperty_page <- function(input, output, session) {
 
   ns <- session$ns
@@ -84,7 +84,7 @@ mod_cssproperty_page <- function(input, output, session) {
   })
 
   rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
-  rv$where= reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
+  rv$where = reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
   rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
   rv$value = reactive(sapply(grep(pattern = "^prop_value_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
   return(rv)
