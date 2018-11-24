@@ -18,7 +18,7 @@ app_ui <- function() {
                h3("CSS properties"),
                mod_cssproperty_pageInput("page"),
                gradientBox(
-                 title = "@Margin properties",
+                 title = "Margin properties",
                  icon = "fa fa-th",
                  gradientColor = "black",
                  width = 12,
