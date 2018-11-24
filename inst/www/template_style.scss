@@ -1,28 +1,88 @@
 /* VARIABLES */
 /*-----------*/
-@import 'variables';
+@import 'boolevar';
+@import 'genprop';
 
 /* CSS PAGE MEDIA ELEMENTS */
 /*-------------------------*/
-@page {
-  size: a4;
-  margin-top: 8mm;
-  padding-top: 8mm;
-  margin-bottom: 13mm;
-  margin-left: 10mm;
-  margin-right: 10mm;
-  font-size: 12pt;
-  @bottom-left {
-    content: "Test n°1";
-    background-color: rgb(201, 76, 76);
-    width: 100%;
+
+/* All pages */
+@if ($boolall == TRUE) {
+
+  @page {
+
+    @if variable-exists($propall) {
+      @each $varall, $valall in $propall {
+        #{$varprop}: $valprop;
+      }
+    }
+
+
+    @import 'marginall';
   }
-  @bottom-right {
-    content: "Page " counter(page) "/" counter(pages);
+
+}
+
+/* First page */
+@if ($boolfirst == TRUE) {
+
+  @page :first {
+
+    @if variable-exists($propfirst) {
+      @each $varfirst, $valfirst in $propfirst {
+        #{$varfirst}: $valfirst;
+      }
+    }
+
+    @import 'marginfirst';
   }
-  @top-right {
-    content: "";
-    width: 100%;
-    background-color: rgb(201, 76, 76);
+
+}
+
+/* Last page */
+@if ($boollast == TRUE) {
+
+  @page :last {
+
+    @if variable-exists($proplast) {
+      @each $varlast, $vallast in $proplast {
+        #{$varlast}: $vallast;
+      }
+    }
+
+    @import 'marginlast';
   }
+
+}
+
+/* Left pages */
+@if ($boolleft == TRUE) {
+
+  @page :left {
+
+    @if variable-exists($propleft) {
+      @each $varleft, $valleft in $propleft {
+        #{$varleft}: $valleft;
+      }
+    }
+
+    @import 'marginleft';
+  }
+
+}
+
+/* Right pages */
+@if ($boolright == TRUE) {
+
+  @page :right {
+
+    @if variable-exists($propleft) {
+      @each $varrightl, $valright in $propright {
+        #{$varrightl}: $propright;
+      }
+    }
+
+    @import 'marginright';
+  }
+
 }
