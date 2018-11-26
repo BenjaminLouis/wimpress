@@ -5,12 +5,14 @@
 \alias{mod_cssproperty_page}
 \title{mod_cssproperty_pageInput and mod_cssproperty_page}
 \usage{
-mod_cssproperty_pageInput(id)
+mod_cssproperty_pageInput(id, title)
 
 mod_cssproperty_page(input, output, session)
 }
 \arguments{
 \item{id}{shiny id}
+
+\item{title}{title of the \code{gradientBox}}
 
 \item{input}{internal}
 
@@ -27,7 +29,7 @@ library(shiny)
 library(shinydashboardPlus)
 if (interactive()) {
 ui <- fluidPage(
-mod_cssproperty_pageInput("page")
+mod_cssproperty_pageInput("page", title = "page")
 )
 
 server <- function(input, output, session) {
