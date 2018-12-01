@@ -114,9 +114,9 @@ mod_cssproperty_page <- function(input, output, session) {
     res <- sapply(grep(pattern = "^prop_value_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]])
     recode(res,
            "1" = "counter(page)",
-           "1/10" = "counter(page) '/' counter(pages))",
+           "1/10" = "counter(page) '/' counter(pages)",
            "Page 1" = "'Page ' counter(page)",
-           "Page 1/10" = "'Page ' counter(page) '/' counter(pages))")
+           "Page 1/10" = "'Page ' counter(page) '/' counter(pages)")
   })
   return(rv)
 }
