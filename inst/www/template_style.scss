@@ -20,9 +20,9 @@
 
   @page {
 
-    @if variable-exists($propall) {
+    @if variable-exists(propall) {
       @each $varall, $valall in $propall {
-        #{$varprop}: $valprop;
+        #{$varall}: $valall;
       }
     }
 
@@ -37,7 +37,7 @@
 
   @page :first {
 
-    @if variable-exists($propfirst) {
+    @if variable-exists(propfirst) {
       @each $varfirst, $valfirst in $propfirst {
         #{$varfirst}: $valfirst;
       }
@@ -53,7 +53,7 @@
 
   @page :last {
 
-    @if variable-exists($proplast) {
+    @if variable-exists(proplast) {
       @each $varlast, $vallast in $proplast {
         #{$varlast}: $vallast;
       }
@@ -69,7 +69,7 @@
 
   @page :left {
 
-    @if variable-exists($propleft) {
+    @if variable-exists(propleft) {
       @each $varleft, $valleft in $propleft {
         #{$varleft}: $valleft;
       }
@@ -85,9 +85,9 @@
 
   @page :right {
 
-    @if variable-exists($propleft) {
-      @each $varrightl, $valright in $propright {
-        #{$varrightl}: $propright;
+    @if variable-exists(propleft) {
+      @each $varright, $valright in $propright {
+        #{$varright}: $valright;
       }
     }
 
