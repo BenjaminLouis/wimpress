@@ -3,23 +3,14 @@
 @import 'boolevar';
 @import 'genprop';
 
-/* EXTENDABLE */
-/*------------*/
-%marginall {
-  @import 'marginall';
-}
-%marginfirst {
-  @import 'marginfirst';
-}
-%marginlast {
-  @import 'marginlast';
-}
-%marginleft {
-  @import 'marginleft';
-}
-%marginright {
-  @import 'marginright';
-}
+/* Import mixin */
+/*--------------*/
+@import 'marginall';
+@import 'marginfirst';
+@import 'marginlast';
+@import 'marginleft';
+@import 'marginright';
+
 
 /* CSS PAGE MEDIA ELEMENTS */
 /*-------------------------*/
@@ -35,7 +26,7 @@
       }
     }
 
-  @extend %marginall;
+  @include marginall;
 
   }
 
@@ -52,7 +43,7 @@
       }
     }
 
-    @extend %marginfirst;
+    @include marginfirst;
   }
 
 }
@@ -68,7 +59,7 @@
       }
     }
 
-    @extend %marginlast;
+    @include marginlast;
   }
 
 }
@@ -84,7 +75,7 @@
       }
     }
 
-    @extend %marginleft;
+    @include marginleft;
   }
 
 }
@@ -100,7 +91,7 @@
       }
     }
 
-    @extend %marginright;
+    @include marginright;
   }
 
 }

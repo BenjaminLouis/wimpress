@@ -24,6 +24,7 @@ app_ui <- function() {
                ),
         column(width = 7,
                actionButton("refresh", label = "Refresh", icon = icon("redo")),
+               actionButton("test", label = "test", icon = icon("redo")),
                mod_view_renderedpdfUI("my_pdf")
         )
       )
