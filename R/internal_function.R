@@ -3,7 +3,7 @@
 #' @param x list of property for a at-rule page
 #' @param what character. Name of at-rule page (all, first, last, left or right)
 #'
-#' @rdname Internal_functions
+#' @noRd
 getbool <- function(x, what) {
   if (length(x$prop()) == 0) {
     res <- FALSE
@@ -19,7 +19,7 @@ getbool <- function(x, what) {
 #' @param x list of property for a at-rule page
 #' @param wh character. Name of at-rule page (all, first, last, left or right)
 #'
-#' @rdname Internal_functions
+#' @noRd
 getprop <- function(x, wh) {
   if (length(x$prop()) == 0) {
     ll <- ""
@@ -48,7 +48,7 @@ getprop <- function(x, wh) {
 #'
 #' @importFrom sass sass
 #'
-#' @rdname Internal_functions
+#' @noRd
 getlist <- function(x) {
   if (length(x$prop()) == 0 | length(setdiff(unique(x$where()), "none")) == 0) {
     ll <- ""
