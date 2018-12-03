@@ -112,11 +112,10 @@ mod_cssproperty_page <- function(input, output, session) {
   rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
   rv$value <- reactive({
     res <- sapply(grep(pattern = "^prop_value_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]])
-    recode(res,
-           "1" = "counter(page)",
-           "1/10" = "counter(page) '/' counter(pages)",
-           "Page 1" = "'Page ' counter(page)",
-           "Page 1/10" = "'Page ' counter(page) '/' counter(pages)")
+    res[res == "1"] <- "counter(page)"
+    res[res == "1/10"] <- "counter(page) '/' counter(pages)"
+    res[res == "Page 1"] <- "'Page ' counter(page)"
+    res[res == "Page 1/10"] <- "'Page ' counter(page) '/' counter(pages)"
   })
   return(rv)
 }
