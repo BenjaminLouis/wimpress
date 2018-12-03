@@ -5,6 +5,8 @@
 #' @param session internal
 #'
 #' @importFrom shiny observeEvent callModule
+#' @importFrom sass sass sass_import
+#' @importFrom shiny callModule reactive observeEvent
 #'
 app_server <- function(input, output, session) {
 
@@ -64,7 +66,7 @@ app_server <- function(input, output, session) {
               normalizePath(file.path(tempdir(), "template_style.scss"), winslash = "/", mustWork = FALSE))
 
     # Compiling SCSS to CSS
-    sass::sass(input = sass::sass_import(normalizePath(file.path(tempdir(), "template_style.scss"),
+    sass(input = sass_import(normalizePath(file.path(tempdir(), "template_style.scss"),
                                                        winslash = "/", mustWork = FALSE)),
                output = normalizePath(file.path(system.file("www", package = "wimpress"), "style.css")))
 
