@@ -1,3 +1,9 @@
+#' Get a boolean to know which at-rule pages have css property
+#'
+#' @param x list of property for a at-rule page
+#' @param what character. Name of at-rule page (all, first, last, left or right)
+#'
+#' @rdname Internal_functions
 getbool <- function(x, what) {
   if (length(x$prop()) == 0) {
     res <- FALSE
@@ -8,6 +14,12 @@ getbool <- function(x, what) {
 }
 
 
+#' Get a variable of css property to sass compilation for a at-rule page
+#'
+#' @param x list of property for a at-rule page
+#' @param wh character. Name of at-rule page (all, first, last, left or right)
+#'
+#' @rdname Internal_functions
 getprop <- function(x, wh) {
   if (length(x$prop()) == 0) {
     ll <- ""
@@ -30,6 +42,13 @@ getprop <- function(x, wh) {
 }
 
 
+#' Get css properties for all at-rule margins in a at-rule page
+#'
+#' @param x list of property for a at-rule page
+#'
+#' @importFrom sass sass
+#'
+#' @rdname Internal_functions
 getlist <- function(x) {
   if (length(x$prop()) == 0 | length(setdiff(unique(x$where()), "none")) == 0) {
     ll <- ""
@@ -62,11 +81,11 @@ getlist <- function(x) {
       if (ll[[i]] == "") {
         ll[[i]]
       } else {
-        sass::sass(list(ll[[i]], paste0("@", newnames[i], " { @each $var, $val in $prop { #{$var}: $val; } }")))
+        sass(list(ll[[i]], paste0("@", newnames[i], " { @each $var, $val in $prop { #{$var}: $val; } }")))
       }
     })
     if (any(sapply(ll, function(y) y != ""))) {
-      ll <- sass::sass(as.list(ll))
+      ll <- sass(as.list(ll))
     }
   }
   return(ll)
