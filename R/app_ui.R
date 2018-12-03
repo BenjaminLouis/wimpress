@@ -1,4 +1,5 @@
-
+#' UI function
+#'
 #' @importFrom shiny fluidRow column h3 actionButton icon
 #' @importFrom shinydashboard dashboardPage dashboardHeader dashboardSidebar dashboardBody
 #' @importFrom shinydashboardPlus gradientBox
