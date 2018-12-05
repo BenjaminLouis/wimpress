@@ -24,7 +24,9 @@ app_ui <- function() {
                mod_cssproperty_pageInput("right", title = "@page :right")
                ),
         column(width = 7,
+               h3("CSS properties"),
                actionButton("refresh", label = "Refresh", icon = icon("redo")),
+               actionButton("view_css", label = "View CSS code", icon = icon("code")),
                mod_view_renderedpdfUI("my_pdf")
         )
       )

@@ -68,13 +68,14 @@ app_server <- function(input, output, session) {
     # Compiling SCSS to CSS
     sass(input = sass_import(normalizePath(file.path(tempdir(), "template_style.scss"),
                                                        winslash = "/", mustWork = FALSE)),
-               output = normalizePath(file.path(system.file("www", package = "wimpress"), "style.css")))
+               output = normalizePath(file.path(system.file("www", package = "wimpress"), "style.css"),
+                                      winslash = "/", mustWork = FALSE))
 
     #rendered the pdf
     cssstyle <- reactive(normalizePath(file.path(system.file("www", package = "wimpress"), "style.css"),
                            winslash = "/", mustWork = FALSE))
     callModule(mod_view_renderedpdf, "my_pdf", path = system.file("www", package = "wimpress"),
-               style_css = cssstyle())
+               style_css = cssstyle)
 
   }, ignoreNULL = FALSE)
 
