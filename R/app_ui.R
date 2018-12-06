@@ -16,7 +16,6 @@ app_ui <- function() {
     dashboardBody(
 
       tags$head(
-        #tags$link(rel = "stylesheet", href = "www/bootstrap-pulse.css"),
         tags$link(rel = "stylesheet", href = "www/my-style.css"),
         tags$link(rel = "stylesheet",
                   href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/agate.min.css"),
@@ -38,7 +37,7 @@ app_ui <- function() {
                h3("PDF File"),
                hr(),
                actionButton("refresh", label = "Refresh", icon = icon("redo"), class = "btn btn-primary"),
-               actionButton("view_css", label = "View CSS code", icon = icon("code"), class = "btn btn-secondary"),
+               actionButton("view_css", label = "View CSS code", icon = icon("code"), class = "btn btn-primary"),
                br(),
                withSpinner(mod_view_renderedpdfUI("my_pdf"))
         )

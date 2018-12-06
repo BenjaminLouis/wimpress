@@ -5,7 +5,7 @@
 \alias{mod_cssproperty_page}
 \title{mod_cssproperty_pageInput and mod_cssproperty_page}
 \usage{
-mod_cssproperty_pageInput(id, title)
+mod_cssproperty_pageInput(id, title, col = "black")
 
 mod_cssproperty_page(input, output, session)
 }
@@ -13,6 +13,8 @@ mod_cssproperty_page(input, output, session)
 \item{id}{shiny id}
 
 \item{title}{title of the \code{gradientBox}}
+
+\item{col}{background color of the \code{gradientBox}}
 
 \item{input}{internal}
 

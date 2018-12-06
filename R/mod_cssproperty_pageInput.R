@@ -3,6 +3,7 @@
 #'
 #' @param id shiny id
 #' @param title title of the \code{gradientBox}
+#' @param col background color of the \code{gradientBox}
 #'
 #' @importFrom shiny NS tagList tags fluidRow column h4 actionButton icon
 #' @importFrom shinydashboardPlus gradientBox
@@ -25,7 +26,7 @@
 #' shinyApp(ui, server)
 #' }
 #'}
-mod_cssproperty_pageInput <- function(id, title) {
+mod_cssproperty_pageInput <- function(id, title, col = "black") {
 
   ns <- NS(id)
 
@@ -33,7 +34,7 @@ mod_cssproperty_pageInput <- function(id, title) {
     gradientBox(
       title = title,
       icon = "fa fa-file",
-      gradientColor = "black",
+      gradientColor = col,
       width = 12,
       boxToolSize = "sm",
       tags$div(id = ns("titleui"),
@@ -43,6 +44,7 @@ mod_cssproperty_pageInput <- function(id, title) {
                  column(width = 5, h4("Value"))
                )
       ),
+      hr(),
       fluidRow(
         column(width = 4, actionButton(ns("add_counter"), "Add page counter", icon = icon("plus", lib = "glyphicon")), offset = 4),
         column(width = 4, actionButton(ns("add_property"), "Add property", icon = icon("plus", lib = "glyphicon")))

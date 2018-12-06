@@ -24,3 +24,20 @@ hr {
   margin-bottom: 1rem;
 }
 
+.btn-default {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(84, 80, 150);
+}
+
+.btn-primary {
+  background-color: rgb(54, 127, 169);
+}
+
+[id*='-titleui'] {
+  text-align: center;
+}
+
+
+
+
