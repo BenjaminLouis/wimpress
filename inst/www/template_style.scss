@@ -3,8 +3,7 @@
 @import 'boolevar';
 @import 'genprop';
 
-/* Import mixin */
-/*--------------*/
+
 @import 'marginall';
 @import 'marginfirst';
 @import 'marginlast';
@@ -15,9 +14,9 @@
 /* CSS PAGE MEDIA ELEMENTS */
 /*-------------------------*/
 
-/* All pages */
-@if ($boolall == TRUE) {
 
+@if ($boolall == TRUE) {
+/* All pages */
   @page {
 
     @if variable-exists(propall) {
@@ -32,9 +31,9 @@
 
 }
 
-/* First page */
-@if ($boolfirst == TRUE) {
 
+@if ($boolfirst == TRUE) {
+/* First page */
   @page :first {
 
     @if variable-exists(propfirst) {
@@ -48,9 +47,9 @@
 
 }
 
-/* Last page */
-@if ($boollast == TRUE) {
 
+@if ($boollast == TRUE) {
+/* Last page */
   @page :last {
 
     @if variable-exists(proplast) {
@@ -64,9 +63,9 @@
 
 }
 
-/* Left pages */
-@if ($boolleft == TRUE) {
 
+@if ($boolleft == TRUE) {
+/* Left pages */
   @page :left {
 
     @if variable-exists(propleft) {
@@ -80,9 +79,9 @@
 
 }
 
-/* Right pages */
-@if ($boolright == TRUE) {
 
+@if ($boolright == TRUE) {
+/* Right pages */
   @page :right {
 
     @if variable-exists(propleft) {

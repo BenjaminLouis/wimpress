@@ -1,6 +1,6 @@
 #' UI function
 #'
-#' @importFrom shiny fluidRow column h3 actionButton icon
+#' @importFrom shiny fluidRow column h3 actionButton icon tags
 #' @importFrom shinydashboard dashboardPage dashboardHeader dashboardSidebar dashboardBody
 #' @importFrom shinydashboardPlus gradientBox
 #'
@@ -14,6 +14,13 @@ app_ui <- function() {
 
     dashboardBody(
 
+      tags$head(
+        tags$link(rel = "stylesheet",
+                  href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/agate.min.css"),
+        tags$script(src = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"),
+        tags$script("hljs.initHighlightingOnLoad();")
+      ),
+
       fluidRow(
         column(width = 5,
                h3("CSS properties"),
@@ -24,7 +31,7 @@ app_ui <- function() {
                mod_cssproperty_pageInput("right", title = "@page :right")
                ),
         column(width = 7,
-               h3("CSS properties"),
+               h3("PDF File"),
                actionButton("refresh", label = "Refresh", icon = icon("redo")),
                actionButton("view_css", label = "View CSS code", icon = icon("code")),
                mod_view_renderedpdfUI("my_pdf")
