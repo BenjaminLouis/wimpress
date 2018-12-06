@@ -16,6 +16,7 @@ Imports:
     rmarkdown,
     sass,
     shiny,
+    shinycssloaders,
     shinydashboard,
     shinydashboardPlus
 Suggests: 

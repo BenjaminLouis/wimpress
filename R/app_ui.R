@@ -2,7 +2,8 @@
 #'
 #' @importFrom shiny fluidRow column h3 actionButton icon tags
 #' @importFrom shinydashboard dashboardPage dashboardHeader dashboardSidebar dashboardBody
-#' @importFrom shinydashboardPlus gradientBox
+#' @importFrom shinydashboardPlus gradientBox loadingState
+#' @importFrom shinycssloaders withSpinner
 #'
 app_ui <- function() {
 
@@ -34,7 +35,7 @@ app_ui <- function() {
                h3("PDF File"),
                actionButton("refresh", label = "Refresh", icon = icon("redo")),
                actionButton("view_css", label = "View CSS code", icon = icon("code")),
-               mod_view_renderedpdfUI("my_pdf")
+               withSpinner(mod_view_renderedpdfUI("my_pdf"))
         )
       )
     )

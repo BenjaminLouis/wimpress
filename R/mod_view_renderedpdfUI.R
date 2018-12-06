@@ -50,12 +50,13 @@ mod_view_renderedpdfUI <- function(id) {
 #' @export
 #' @rdname mod_view_renderedpdfUI
 mod_view_renderedpdf <- function(input, output, session, path, filename = "template_report", paramsUI = reactive(NULL), style_css = reactive(NULL)) {
+
   output$reportUI <- renderUI({
-    params <- paramsUI()
-    render(paste0(path, "/", filename, ".Rmd"),
-           params = params, output_options = list(css = style_css()),
-           envir = new.env(parent = globalenv()),
-           encoding = "UTF-8", quiet = TRUE)
-    tags$iframe(style = "width: 100%; height:700px; scrolling=yes", src = paste0("www/", filename, ".pdf"))
-  })
+        params <- paramsUI()
+        render(paste0(path, "/", filename, ".Rmd"),
+               params = params, output_options = list(css = style_css()),
+               envir = new.env(parent = globalenv()),
+               encoding = "UTF-8", quiet = TRUE)
+        tags$iframe(style = "width: 100%; height:700px; scrolling=yes", src = paste0("www/", filename, ".pdf"))
+    })
 }
