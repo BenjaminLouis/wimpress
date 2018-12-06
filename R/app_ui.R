@@ -1,6 +1,6 @@
 #' UI function
 #'
-#' @importFrom shiny fluidRow column h3 actionButton icon tags
+#' @importFrom shiny fluidRow column h3 actionButton icon tags hr br
 #' @importFrom shinydashboard dashboardPage dashboardHeader dashboardSidebar dashboardBody
 #' @importFrom shinydashboardPlus gradientBox loadingState
 #' @importFrom shinycssloaders withSpinner

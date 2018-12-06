@@ -5,7 +5,7 @@
 #' @param title title of the \code{gradientBox}
 #' @param col background color of the \code{gradientBox}
 #'
-#' @importFrom shiny NS tagList tags fluidRow column h4 actionButton icon
+#' @importFrom shiny NS tagList tags fluidRow column h4 actionButton icon hr
 #' @importFrom shinydashboardPlus gradientBox
 #'
 #' @export
