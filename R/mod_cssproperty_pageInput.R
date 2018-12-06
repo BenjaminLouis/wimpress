@@ -73,7 +73,8 @@ mod_cssproperty_page <- function(input, output, session) {
              "font-size", "font-style", "text-align", "vertical-align", "line-height",
              "margin", "margin-top", "margin-right", "margin-bottom", "margin-left",
              "border", "border-top", "border-right", "border-bottom", "border-left",
-             "padding", "padding-top", "padding-right", "padding-bottom", "padding-left")
+             "padding", "padding-top", "padding-right", "padding-bottom", "padding-left",
+             "width", "height", "overflow", "overflox-x", "overflow-y", "display")
   rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
 
   observeEvent(input$add_property, {
