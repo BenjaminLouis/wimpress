@@ -1,0 +1,26 @@
+html {
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h3 {
+  text-align: center;
+  font-weight: bold;
+}
+
+hr {
+  overflow: visible;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 2px solid black;
+}
+
+.btn {
+  margin-bottom: 1rem;
+}
+

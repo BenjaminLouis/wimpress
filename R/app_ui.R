@@ -7,7 +7,7 @@
 #'
 app_ui <- function() {
 
-  dashboardPage(
+  dashboardPage(skin = "purple",
 
     dashboardHeader(title = "Pimp your PDF with wimpress", titleWidth = "100%"),
 
@@ -16,6 +16,8 @@ app_ui <- function() {
     dashboardBody(
 
       tags$head(
+        #tags$link(rel = "stylesheet", href = "www/bootstrap-pulse.css"),
+        tags$link(rel = "stylesheet", href = "www/my-style.css"),
         tags$link(rel = "stylesheet",
                   href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/agate.min.css"),
         tags$script(src = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"),
@@ -25,6 +27,7 @@ app_ui <- function() {
       fluidRow(
         column(width = 5,
                h3("CSS properties"),
+               hr(),
                mod_cssproperty_pageInput("all", title = "@page"),
                mod_cssproperty_pageInput("first", title = "@page :first"),
                mod_cssproperty_pageInput("last", title = "@page :last"),
@@ -33,8 +36,10 @@ app_ui <- function() {
                ),
         column(width = 7,
                h3("PDF File"),
-               actionButton("refresh", label = "Refresh", icon = icon("redo")),
-               actionButton("view_css", label = "View CSS code", icon = icon("code")),
+               hr(),
+               actionButton("refresh", label = "Refresh", icon = icon("redo"), class = "btn btn-primary"),
+               actionButton("view_css", label = "View CSS code", icon = icon("code"), class = "btn btn-secondary"),
+               br(),
                withSpinner(mod_view_renderedpdfUI("my_pdf"))
         )
       )
