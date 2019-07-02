@@ -1,0 +1,124 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?ffhgja');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?ffhgja#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?ffhgja') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?ffhgja') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?ffhgja##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+i, .icomoon-liga {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-top-left-corner {
+  &:before {
+    content: $icon-top-left-corner; 
+  }
+}
+.icon-top-left {
+  &:before {
+    content: $icon-top-left; 
+  }
+}
+.icon-top-center {
+  &:before {
+    content: $icon-top-center; 
+  }
+}
+.icon-top-right {
+  &:before {
+    content: $icon-top-right; 
+  }
+}
+.icon-top-right-corner {
+  &:before {
+    content: $icon-top-right-corner; 
+  }
+}
+.icon-right-top {
+  &:before {
+    content: $icon-right-top; 
+  }
+}
+.icon-right-middle {
+  &:before {
+    content: $icon-right-middle; 
+  }
+}
+.icon-right-bottom {
+  &:before {
+    content: $icon-right-bottom; 
+  }
+}
+.icon-bottom-right-corner {
+  &:before {
+    content: $icon-bottom-right-corner; 
+  }
+}
+.icon-bottom-right {
+  &:before {
+    content: $icon-bottom-right; 
+  }
+}
+.icon-bottom-center {
+  &:before {
+    content: $icon-bottom-center; 
+  }
+}
+.icon-bottom-left {
+  &:before {
+    content: $icon-bottom-left; 
+  }
+}
+.icon-bottom-left-corner {
+  &:before {
+    content: $icon-bottom-left-corner; 
+  }
+}
+.icon-left-bottom {
+  &:before {
+    content: $icon-left-bottom; 
+  }
+}
+.icon-left-middle {
+  &:before {
+    content: $icon-left-middle; 
+  }
+}
+.icon-left-top {
+  &:before {
+    content: $icon-left-top; 
+  }
+}
+.icon-none {
+  &:before {
+    content: $icon-none; 
+  }
+}
+

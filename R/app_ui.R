@@ -17,6 +17,8 @@ app_ui <- function() {
 
       tags$head(
         tags$link(rel = "stylesheet", href = "www/my-style.css"),
+        tags$link(rel = "stylesheet", href = "www/icopaged/style.css"),
+        #tags$link(rel = "stylesheet", href = "www/icopaged/ie7/ie7.css"),
         tags$link(rel = "stylesheet",
                   href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/agate.min.css"),
         tags$script(src = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"),

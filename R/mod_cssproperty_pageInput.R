@@ -83,10 +83,12 @@ mod_cssproperty_page <- function(input, output, session) {
       where = "beforeEnd",
       immediate = TRUE,
       ui = fluidRow(
-        column(width = 3, selectInput(ns(paste0("prop_where_",input$add_property)), label = NULL,
+        column(width = 3, shinyWidgets::pickerInput(ns(paste0("prop_where_",input$add_property)), label = NULL,
                                       choices = c("none", "t-l-co", "t-l", "t-ce", "t-r", "t-r-co",
                                                   "r-t", "r-m", "r-b", "b-r-co", "b-r",
-                                                  "b-ce", "b-l", "b-l-co", "l-b", "l-m", "l-t"))),
+                                                  "b-ce", "b-l", "b-l-co", "l-b", "l-m", "l-t"),
+                                      choicesOpt = list(icon = c("icon-none")),
+                                      options = list(`icon-base` = "", tickIcon = "icon-none"))),
         column(width = 4, selectInput(ns(paste0("prop_selected_",input$add_property)),
                                       label = NULL, choices = c("", sort(props)))),
         column(width = 5, textInput(ns(paste0("prop_value_",input$add_property)), label = NULL))
