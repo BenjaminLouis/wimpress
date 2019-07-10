@@ -39,9 +39,9 @@ mod_cssproperty_pageInput <- function(id, title, col = "black") {
       boxToolSize = "sm",
       tags$div(id = ns("titleui"),
                fluidRow(
-                 column(width = 3, h4("Margin")),
-                 column(width = 4, h4("Property")),
-                 column(width = 5, h4("Value"))
+                 column(width = 2, h4("Margin")),
+                 column(width = 3, h4("Property")),
+                 column(width = 4, h4("Value"))
                )
       ),
       hr(),
@@ -63,6 +63,7 @@ mod_cssproperty_pageInput <- function(id, title, col = "black") {
 #' @param session internal
 #'
 #' @importFrom shiny reactiveValues observeEvent insertUI fluidRow column selectInput textInput reactive
+#' @importFrom shinyWidgets pickerInput actionBttn
 #'
 #' @export
 #' @rdname mod_cssproperty_pageInput
@@ -75,6 +76,10 @@ mod_cssproperty_page <- function(input, output, session) {
              "border", "border-top", "border-right", "border-bottom", "border-left",
              "padding", "padding-top", "padding-right", "padding-bottom", "padding-left",
              "width", "height", "overflow", "overflox-x", "overflow-y", "display")
+  marginchoices <- c("none", "top-left-corner", "top-left", "top-center", "top-rright",
+                     "top-right-corner", "right-top", "right-middle", "right-bottom",
+                     "bottom-right-corner", "bottom-right","ottomb-center", "bottom-left",
+                     "bottom-left-corner", "left-bottom", "left-middle", "left-top")
   rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
 
   observeEvent(input$add_property, {
@@ -83,15 +88,18 @@ mod_cssproperty_page <- function(input, output, session) {
       where = "beforeEnd",
       immediate = TRUE,
       ui = fluidRow(
-        column(width = 3, shinyWidgets::pickerInput(ns(paste0("prop_where_",input$add_property)), label = NULL,
-                                      choices = c("none", "t-l-co", "t-l", "t-ce", "t-r", "t-r-co",
-                                                  "r-t", "r-m", "r-b", "b-r-co", "b-r",
-                                                  "b-ce", "b-l", "b-l-co", "l-b", "l-m", "l-t"),
-                                      choicesOpt = list(icon = c("icon-none")),
-                                      options = list(`icon-base` = "", tickIcon = "icon-none"))),
-        column(width = 4, selectInput(ns(paste0("prop_selected_",input$add_property)),
+        column(width = 2, pickerInput(ns(paste0("prop_where_",input$add_property)), label = NULL,
+                                      choices = marginchoices,
+                                      choicesOpt = list(icon = paste0("icon-", marginchoices)),
+                                      options = list(`icon-base` = "", tickIcon = ""))),
+        column(width = 3, selectInput(ns(paste0("prop_selected_",input$add_property)),
                                       label = NULL, choices = c("", sort(props)))),
-        column(width = 5, textInput(ns(paste0("prop_value_",input$add_property)), label = NULL))
+        column(width = 4, textInput(ns(paste0("prop_value_",input$add_property)), label = NULL)),
+        column(width = 1,  actionBttn(inputId = ns(paste0("info_",input$add_property)), label = NULL,
+                                     style = "material-circle", color = "primary", icon = icon("question"))),
+        column(width = 1,  actionBttn(inputId = ns(paste0("remove_",input$add_property)), label = NULL,
+                                      style = "material-circle", color = "danger", icon = icon("times")))
+
       )
     )
   })
@@ -102,10 +110,10 @@ mod_cssproperty_page <- function(input, output, session) {
       where = "beforeEnd",
       immediate = TRUE,
       ui = fluidRow(
-        column(width = 3, selectInput(ns("prop_where_0"), label = NULL,
-                                      choices = c("none", "t-l-co", "t-l", "t-ce", "t-r", "t-r-co",
-                                                  "r-t", "r-m", "r-b", "b-r-co", "b-r",
-                                                  "b-ce", "b-l", "b-l-co", "l-b", "l-m", "l-t"))),
+        column(width = 3, pickerInput(ns(paste0("prop_where_0",input$add_property)), label = NULL,
+                                      choices = marginchoices,
+                                      choicesOpt = list(icon = paste0("icon-", marginchoices)),
+                                      options = list(`icon-base` = "", tickIcon = ""))),
         column(width = 4, selectInput(ns("prop_selected_0"), label = NULL, choices = c("content"))),
         column(width = 5, selectInput(ns("prop_value_0"),
                                       label = NULL, choices = c("1", "1/10", "Page 1", "Page 1/10")))

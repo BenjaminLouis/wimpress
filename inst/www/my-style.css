@@ -20,7 +20,7 @@ hr {
   border-top: 2px solid black;
 }
 
-.btn {
+.btn, .bttn {
   margin-bottom: 1rem;
 }
 
@@ -39,5 +39,8 @@ hr {
 }
 
 
-
+i[class^="icon-"]:after, i[class*=" icon-"]:after, .icomoon-liga:after,
+span[class^="icon-"]:after, span[class*=" icon-"]:after {
+  content : " ";
+}
 
