@@ -54,7 +54,7 @@ attachment::att_to_description()
 usethis::use_tidy_description()
 
 # Vignette
-#usethis::use_vignette("wimpress")
+usethis::use_vignette("using_wimpress")
 #devtools::build_vignettes()
 
 # Versionning
