@@ -21,6 +21,8 @@ Imports:
     shinydashboard,
     shinydashboardPlus,
     shinyWidgets
+Suggests:
+    knitr
 VignetteBuilder: 
     knitr
 Remotes: 
