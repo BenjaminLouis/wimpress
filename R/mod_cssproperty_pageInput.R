@@ -95,9 +95,9 @@ mod_cssproperty_page <- function(input, output, session) {
                                       choices = marginchoices,
                                       choicesOpt = list(icon = paste0("icon-", marginchoices)),
                                       options = list(`icon-base` = "", tickIcon = ""))),
-        column(width = 3, selectInput(ns(paste0("prop_selected_",nr)),
+        column(width = 4, selectInput(ns(paste0("prop_selected_",nr)),
                                       label = NULL, choices = c("", sort(props)))),
-        column(width = 4, textInput(ns(paste0("prop_value_",nr)), label = NULL)),
+        column(width = 3, textInput(ns(paste0("prop_value_",nr)), label = NULL)),
         column(width = 1,  actionBttn(inputId = ns(paste0("info_",nr)), label = NULL, size = "sm",
                                      style = "material-circle", color = "primary", icon = icon("question"))),
         column(width = 1,  actionBttn(inputId = ns(paste0("remove_",nr)), label = NULL, size = "sm",
@@ -114,37 +114,50 @@ mod_cssproperty_page <- function(input, output, session) {
   })
 
   observeEvent(input$add_counter, {
+    nc <- paste0("c", input$add_counter)
     insertUI(
       selector = paste0("#", ns("titleui")),
       where = "beforeEnd",
       immediate = TRUE,
-      ui = fluidRow(
-        column(width = 3, pickerInput(ns(paste0("prop_where_0",input$add_property)), label = NULL,
+      ui = tags$div(id = ns(paste0("ui_counter_", nc)),
+                    fluidRow(
+        column(width = 2, pickerInput(ns(paste0("prop_where_", nc)), label = NULL,
                                       choices = marginchoices,
                                       choicesOpt = list(icon = paste0("icon-", marginchoices)),
                                       options = list(`icon-base` = "", tickIcon = ""))),
-        column(width = 4, selectInput(ns("prop_selected_0"), label = NULL, choices = c("content"))),
-        column(width = 5, selectInput(ns("prop_value_0"),
-                                      label = NULL, choices = c("1", "1/10", "Page 1", "Page 1/10")))
-      )
+        column(width = 4, selectInput(ns(paste0("prop_selected_", nc)), label = NULL, choices = c("content"))),
+        column(width = 3, selectInput(ns(paste0("prop_value_", nc)),
+                                      label = NULL, choices = c("1", "1/10", "Page 1", "Page 1/10"))),
+        column(width = 1,  actionBttn(inputId = ns(paste0("info_",nc)), label = NULL, size = "sm",
+                                      style = "material-circle", color = "primary", icon = icon("question"))),
+        column(width = 1,  actionBttn(inputId = ns(paste0("remove_",nc)), label = NULL, size = "sm",
+                                      style = "material-circle", color = "danger", icon = icon("times")))
+      ))
     )
-  }, ignoreInit = TRUE)
-
-  # dig <- reactive({
-  #   if (!is.null(rv$removed)) {
-  #     pat <- paste0("[[\\d+](?!", rv$nremoved,")]")
-  #   } else {
-  #     pat <- "[:digit:]+"
-  #   }
-  #   pat
-  #   [!grepl(rv$nremoved, names(x))]
-  # })
+    observeEvent(input[[paste0("remove_", nc)]],{
+      removeUI(
+        selector = paste0("#", ns(paste0("ui_counter_", nc)))
+      )
+      rv$nremoved <- c(rv$nremoved, nc)
+    })
+  })
 
 
-  rv$where <- reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]]))
-  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]]))
+  nm <- reactive({
+    if (!is.null(rv$nremoved)) {
+      pat <- paste0("(", paste0(c(rv$nremoved, rv$countremoved), collapse = "|"), ")")
+      nmint <- names(input)[!grepl(pat, names(input))]
+    } else {
+      nmint <- names(input)
+    }
+    print(nmint)
+    nmint
+  })
+
+  rv$where <- reactive(sapply(grep(pattern = "^prop_where_c?[[:digit:]]+$", x = nm(), value = TRUE), function(x) input[[x]]))
+  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_c?[[:digit:]]+$", x = nm(), value = TRUE), function(x) input[[x]]))
   rv$value <- reactive({
-    res <- sapply(grep(pattern = "^prop_value_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]])
+    res <- sapply(grep(pattern = "^prop_value_c?[[:digit:]]+$", x = nm(), value = TRUE), function(x) input[[x]])
     res[grep("content", rv$prop())] <- paste0("'", res[grep("content", rv$prop())], "'")
     res[res == "'1'"] <- "counter(page)"
     res[res == "'1/10'"] <- "counter(page) '/' counter(pages)"
