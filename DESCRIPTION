@@ -13,6 +13,7 @@ License: MIT + file LICENSE
 URL: https://github.com/BenjaminLouis/wimpress
 BugReports: https://github.com/BenjaminLouis/wimpress/issues
 Imports: 
+    htmltools,
     rmarkdown,
     sass,
     shiny,

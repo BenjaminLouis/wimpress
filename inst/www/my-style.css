@@ -20,7 +20,7 @@ hr {
   border-top: 2px solid black;
 }
 
-.btn, .bttn {
+.btn {
   margin-bottom: 1rem;
 }
 
@@ -44,3 +44,6 @@ span[class^="icon-"]:after, span[class*=" icon-"]:after {
   content : " ";
 }
 
+.filter-option-inner {
+  margin-left: 25px;
+}
