@@ -130,21 +130,20 @@ mod_cssproperty_page <- function(input, output, session) {
     )
   }, ignoreInit = TRUE)
 
-  # dig <- reactive({
-  #   if (!is.null(rv$removed)) {
-  #     pat <- paste0("[[\\d+](?!", rv$nremoved,")]")
-  #   } else {
-  #     pat <- "[:digit:]+"
-  #   }
-  #   pat
-  #   [!grepl(rv$nremoved, names(x))]
-  # })
+  nm <- reactive({
+    if (!is.null(rv$nremoved)) {
+      pat <- paste0("(", paste0(rv$nremoved, collapse = "|"), ")")
+      names(input)[!grepl(pat, names(input))]
+    } else {
+      names(input)
+    }
+  })
+observe(print(rv$nremoved))
 
-
-  rv$where <- reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]]))
-  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]]))
+  rv$where <- reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]+$", x = nm(), value = TRUE), function(x) input[[x]]))
+  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]+$", x = nm(), value = TRUE), function(x) input[[x]]))
   rv$value <- reactive({
-    res <- sapply(grep(pattern = "^prop_value_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]])
+    res <- sapply(grep(pattern = "^prop_value_[[:digit:]]+$", x = nm(), value = TRUE), function(x) input[[x]])
     res[grep("content", rv$prop())] <- paste0("'", res[grep("content", rv$prop())], "'")
     res[res == "'1'"] <- "counter(page)"
     res[res == "'1/10'"] <- "counter(page) '/' counter(pages)"
