@@ -39,9 +39,9 @@ mod_cssproperty_pageInput <- function(id, title, col = "black") {
       boxToolSize = "sm",
       tags$div(id = ns("titleui"),
                fluidRow(
-                 column(width = 3, h4("Margin")),
-                 column(width = 4, h4("Property")),
-                 column(width = 5, h4("Value"))
+                 column(width = 2, h4("Margin")),
+                 column(width = 3, h4("Property")),
+                 column(width = 4, h4("Value"))
                )
       ),
       hr(),
@@ -62,7 +62,9 @@ mod_cssproperty_pageInput <- function(id, title, col = "black") {
 #' @param output internal
 #' @param session internal
 #'
-#' @importFrom shiny reactiveValues observeEvent insertUI fluidRow column selectInput textInput reactive
+#' @importFrom shiny reactiveValues observeEvent insertUI fluidRow column selectInput textInput reactive removeUI
+#' @importFrom shinyWidgets pickerInput actionBttn
+#' @importFrom htmltools tags
 #'
 #' @export
 #' @rdname mod_cssproperty_pageInput
@@ -75,23 +77,40 @@ mod_cssproperty_page <- function(input, output, session) {
              "border", "border-top", "border-right", "border-bottom", "border-left",
              "padding", "padding-top", "padding-right", "padding-bottom", "padding-left",
              "width", "height", "overflow", "overflox-x", "overflow-y", "display")
-  rv <- reactiveValues(where = NULL, prop = NULL, value = NULL)
+  marginchoices <- c("none", "top-left-corner", "top-left", "top-center", "top-rright",
+                     "top-right-corner", "right-top", "right-middle", "right-bottom",
+                     "bottom-right-corner", "bottom-right","bottom-center", "bottom-left",
+                     "bottom-left-corner", "left-bottom", "left-middle", "left-top")
+  rv <- reactiveValues(where = NULL, prop = NULL, value = NULL, nremoved = NULL)
 
   observeEvent(input$add_property, {
+    nr <- input$add_property
     insertUI(
       selector = paste0("#", ns("titleui")),
       where = "beforeEnd",
       immediate = TRUE,
-      ui = fluidRow(
-        column(width = 3, selectInput(ns(paste0("prop_where_",input$add_property)), label = NULL,
-                                      choices = c("none", "t-l-co", "t-l", "t-ce", "t-r", "t-r-co",
-                                                  "r-t", "r-m", "r-b", "b-r-co", "b-r",
-                                                  "b-ce", "b-l", "b-l-co", "l-b", "l-m", "l-t"))),
-        column(width = 4, selectInput(ns(paste0("prop_selected_",input$add_property)),
+      ui = tags$div(id = ns(paste0("ui_property_", nr)),
+                    fluidRow(
+        column(width = 2, pickerInput(ns(paste0("prop_where_",nr)), label = NULL,
+                                      choices = marginchoices,
+                                      choicesOpt = list(icon = paste0("icon-", marginchoices)),
+                                      options = list(`icon-base` = "", tickIcon = ""))),
+        column(width = 3, selectInput(ns(paste0("prop_selected_",nr)),
                                       label = NULL, choices = c("", sort(props)))),
-        column(width = 5, textInput(ns(paste0("prop_value_",input$add_property)), label = NULL))
-      )
+        column(width = 4, textInput(ns(paste0("prop_value_",nr)), label = NULL)),
+        column(width = 1,  actionBttn(inputId = ns(paste0("info_",nr)), label = NULL, size = "sm",
+                                     style = "material-circle", color = "primary", icon = icon("question"))),
+        column(width = 1,  actionBttn(inputId = ns(paste0("remove_",nr)), label = NULL, size = "sm",
+                                      style = "material-circle", color = "danger", icon = icon("times")))
+
+      ))
     )
+    observeEvent(input[[paste0("remove_", nr)]],{
+      removeUI(
+        selector = paste0("#", ns(paste0("ui_property_", nr)))
+      )
+      rv$nremoved <- c(rv$nremoved, nr)
+    })
   })
 
   observeEvent(input$add_counter, {
@@ -100,21 +119,32 @@ mod_cssproperty_page <- function(input, output, session) {
       where = "beforeEnd",
       immediate = TRUE,
       ui = fluidRow(
-        column(width = 3, selectInput(ns("prop_where_0"), label = NULL,
-                                      choices = c("none", "t-l-co", "t-l", "t-ce", "t-r", "t-r-co",
-                                                  "r-t", "r-m", "r-b", "b-r-co", "b-r",
-                                                  "b-ce", "b-l", "b-l-co", "l-b", "l-m", "l-t"))),
+        column(width = 3, pickerInput(ns(paste0("prop_where_0",input$add_property)), label = NULL,
+                                      choices = marginchoices,
+                                      choicesOpt = list(icon = paste0("icon-", marginchoices)),
+                                      options = list(`icon-base` = "", tickIcon = ""))),
         column(width = 4, selectInput(ns("prop_selected_0"), label = NULL, choices = c("content"))),
         column(width = 5, selectInput(ns("prop_value_0"),
                                       label = NULL, choices = c("1", "1/10", "Page 1", "Page 1/10")))
       )
     )
-  })
+  }, ignoreInit = TRUE)
 
-  rv$where = reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
-  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]]))
+  # dig <- reactive({
+  #   if (!is.null(rv$removed)) {
+  #     pat <- paste0("[[\\d+](?!", rv$nremoved,")]")
+  #   } else {
+  #     pat <- "[:digit:]+"
+  #   }
+  #   pat
+  #   [!grepl(rv$nremoved, names(x))]
+  # })
+
+
+  rv$where <- reactive(sapply(grep(pattern = "^prop_where_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]]))
+  rv$prop = reactive(sapply(grep(pattern = "^prop_selected_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]]))
   rv$value <- reactive({
-    res <- sapply(grep(pattern = "^prop_value_[[:digit:]]$", x = names(input), value = TRUE), function(x) input[[x]])
+    res <- sapply(grep(pattern = "^prop_value_[[:digit:]]+$", x = names(input), value = TRUE), function(x) input[[x]])
     res[grep("content", rv$prop())] <- paste0("'", res[grep("content", rv$prop())], "'")
     res[res == "'1'"] <- "counter(page)"
     res[res == "'1/10'"] <- "counter(page) '/' counter(pages)"

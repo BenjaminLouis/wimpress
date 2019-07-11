@@ -13,21 +13,20 @@ License: MIT + file LICENSE
 URL: https://github.com/BenjaminLouis/wimpress
 BugReports: https://github.com/BenjaminLouis/wimpress/issues
 Imports: 
+    htmltools,
     rmarkdown,
     sass,
     shiny,
     shinycssloaders,
     shinydashboard,
-    shinydashboardPlus
-Suggests: 
-    covr,
-    knitr,
-    testthat
+    shinydashboardPlus,
+    shinyWidgets
+Suggests:
+    knitr
 VignetteBuilder: 
     knitr
 Remotes: 
-    github::RLesur/weasydoc,
-    github::rstudio/sass
+    github::RLesur/weasydoc
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
