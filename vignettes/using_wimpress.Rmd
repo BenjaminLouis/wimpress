@@ -1,5 +1,5 @@
 ---
-title: "using_wimpress"
+title: "How to use wimpress"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{using_wimpress}
